@@ -58,15 +58,15 @@ function randInt(min, max) {
 //キーボードが押された時に呼ばれる
 document.onkeydown = function (e) {
 
-	if (e.keyCode == 97 ||
-		e.keyCode == 98 ||
-		e.keyCode == 99 ||
+	if (e.keyCode == 49 ||
+		e.keyCode == 50 ||
+		e.keyCode == 51 ||
 		e.keyCode == 32
 	) {
 		let s;
-		if (e.keyCode == 97) s = 0;
-		if (e.keyCode == 98) s = 250;
-		if (e.keyCode == 99) s = 520;
+		if (e.keyCode == 49) s = 0;
+		if (e.keyCode == 50) s = 250;
+		if (e.keyCode == 51) s = 520;
 
 		let x = randInt(s, s + 250);
 		if (e.keyCode == 32) x = randInt(0, SCREEN_SIZE_W);
