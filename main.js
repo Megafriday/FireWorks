@@ -1,5 +1,5 @@
-const SCREEN_SIZE_W = window.innerWidth - 30;
-const SCREEN_SIZE_H = window.innerHeight - 30;
+const SCREEN_SIZE_W = window.innerWidth - 40;
+const SCREEN_SIZE_H = window.innerHeight - 40;
 
 let can = document.getElementById("can");
 can.width = SCREEN_SIZE_W;
