@@ -1,17 +1,13 @@
-const SCREEN_SIZE_W = window.innerWidth;
-const SCREEN_SIZE_H = window.innerHeight;
+const SCREEN_SIZE_W = window.innerWidth - 30;
+const SCREEN_SIZE_H = window.innerHeight - 30;
 
 let can = document.getElementById("can");
-let con = can.getContext("2d");
-
 can.width = SCREEN_SIZE_W;
 can.height = SCREEN_SIZE_H;
+let con = can.getContext("2d");
 
-
-setInterval(mainLoop, 1000 / 60);
-
-let hanabi = [];
-let zanzo = [];
+let hanabis = [];
+let zanzos = [];
 
 function updateObj(obj) {
 	//スプライトのブロックを更新
@@ -29,8 +25,8 @@ function drawObj(obj) {
 
 //毎フレーム毎の更新処理
 function update() {
-	updateObj(hanabi);
-	updateObj(zanzo);
+	updateObj(hanabis);
+	updateObj(zanzos);
 }
 
 //毎フレーム毎の描画
@@ -41,21 +37,21 @@ function draw() {
 	con.fillRect(0, 0, SCREEN_SIZE_W, SCREEN_SIZE_H);
 
 	con.fillStyle = "#ffffff";
-	//con.fillText("H:"+hanabi.length,10,10);
-	//con.fillText("Z:"+zanzo.length,10,30);
+	con.fillText("H:" + hanabis.length, 10, 10);
+	con.fillText("Z:" + zanzos.length, 10, 30);
 
 	con.globalCompositeOperation = 'lighter';
-	drawObj(zanzo);
-	drawObj(hanabi);
+	drawObj(zanzos);
+	drawObj(hanabis);
 }
 
 function mainLoop() {
 	update();
 	draw();
+	window.requestAnimationFrame(mainLoop);
 }
 
-
-function rand(min, max) {
+function randInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -72,13 +68,15 @@ document.onkeydown = function (e) {
 		if (e.keyCode == 98) s = 250;
 		if (e.keyCode == 99) s = 520;
 
-		let x = rand(s, s + 250);
-		if (e.keyCode == 32) x = rand(0, SCREEN_SIZE_W);
-		let y = rand(SCREEN_SIZE_H - 50, SCREEN_SIZE_H);
-		let sp = 600 + rand(0, 400);
-		let co = rand(0, 3);
-		hanabi.push(
+		let x = randInt(s, s + 250);
+		if (e.keyCode == 32) x = randInt(0, SCREEN_SIZE_W);
+		let y = randInt(SCREEN_SIZE_H - 50, SCREEN_SIZE_H);
+		let sp = 600 + randInt(0, 400);
+		let co = randInt(0, 3);
+		hanabis.push(
 			new Hanabi(x << 8, y << 8, co, 0, -800, 4)
 		);
 	}
 }
+
+mainLoop();

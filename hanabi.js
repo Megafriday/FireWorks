@@ -1,4 +1,4 @@
-let fwcol = [
+const fwcol = [
 	"#ffdd55",
 	"#ff6622",
 	"#2255ff",
@@ -30,7 +30,7 @@ class Zanzo {
 
 
 class Hanabi {
-	constructor(x, y, ca, vx, vy, gv, tp, hp) {
+	constructor(x, y, ca, vx, vy, gv, tp = 0, hp = 100) {
 		this.col = ca;
 		this.x = x;
 		this.y = y;
@@ -38,9 +38,7 @@ class Hanabi {
 		this.vy = vy;
 		this.kill = false;
 		this.gv = gv;
-		if (tp == undefined) tp = 0;
 		this.tp = tp;
-		if (hp == undefined) hp = 100;
 		this.hp = hp;
 		this.sp = 100;
 	}
@@ -58,21 +56,21 @@ class Hanabi {
 			this.kill = true;
 
 			for (let i = 0; i < 200; i++) {
-				let r = rand(0, 360);
-				let s = rand(10, 300);
+				let r = randInt(0, 360);
+				let s = randInt(10, 300);
 				let vx = Math.cos(r * Math.PI / 180) * s;
 				let vy = Math.sin(r * Math.PI / 180) * s;
-				hanabi.push(
+				hanabis.push(
 					new Hanabi(this.x, this.y, this.col, vx, vy, 1, 1, 200)
 				);
 			}
-			let col = rand(0, 3);
+			let col = randInt(0, 3);
 			for (let i = 0; i < 100; i++) {
-				let r = rand(0, 360);
-				let s = rand(300, 400);
+				let r = randInt(0, 360);
+				let s = randInt(300, 400);
 				let vx = Math.cos(r * Math.PI / 180) * s;
 				let vy = Math.sin(r * Math.PI / 180) * s;
-				hanabi.push(
+				hanabis.push(
 					new Hanabi(this.x, this.y, col, vx, vy, 1, 1, 200)
 				);
 			}
@@ -88,8 +86,8 @@ class Hanabi {
 	}
 
 	draw() {
-		if (this.tp > 0 && rand(0, 100) < 80) return;
-		if (this.tp == 0 && rand(0, 100) < 20) return;
+		if (this.tp > 0 && randInt(0, 100) < 80) return;
+		if (this.tp == 0 && randInt(0, 100) < 20) return;
 		if (this.kill) return;
 
 		con.globalAlpha = 1.0;
@@ -101,7 +99,7 @@ class Hanabi {
 		con.globalAlpha = 0.5;
 		con.fillRect((this.x >> 8) - 1, (this.y >> 8), 4, 2);
 		con.fillRect((this.x >> 8), (this.y >> 8) - 1, 2, 4);
-		zanzo.push(
+		zanzos.push(
 			new Zanzo(this.x, this.y, col)
 		);
 	}
