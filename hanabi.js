@@ -1,4 +1,4 @@
-const fwcol = [
+const fwColor = [
 	"#ffdd55",
 	"#ff6622",
 	"#2255ff",
@@ -23,15 +23,15 @@ class Zanzo {
 		if (this.kill) return;
 
 		con.globalAlpha = 1.0 * this.c / 10;
-		con.fillStyle = fwcol[this.col];
+		con.fillStyle = fwColor[this.col];
 		con.fillRect((this.x >> 8), (this.y >> 8), 2, 2);
 	}
 }
 
 
 class Hanabi {
-	constructor(x, y, ca, vx, vy, gv, tp = 0, hp = 100) {
-		this.col = ca;
+	constructor(x, y, color, vx, vy, gv, tp = 0, hp = 100) {
+		this.col = color;
 		this.x = x;
 		this.y = y;
 		this.vx = vx;
@@ -94,7 +94,7 @@ class Hanabi {
 		if (this.hp < 50) con.globalAlpha = this.hp / 50;
 		let col = this.col;
 		if (this.tp == 0) col = 0;
-		con.fillStyle = fwcol[col];
+		con.fillStyle = fwColor[col];
 		con.fillRect(this.x >> 8, this.y >> 8, 2, 2);
 		con.globalAlpha = 0.5;
 		con.fillRect((this.x >> 8) - 1, (this.y >> 8), 4, 2);

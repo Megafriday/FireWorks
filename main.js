@@ -61,10 +61,10 @@ document.body.addEventListener("keydown", e => {
 	if (e.key == " ") {
 
 		const x = randInt(0, SCREEN_SIZE_W);
-		let y = SCREEN_SIZE_H;
-		let co = randInt(0, 3);
+		const y = SCREEN_SIZE_H;
+		const color = randInt(0, fwColor.length - 1);
 		hanabis.push(
-			new Hanabi(x << 8, y << 8, co, 0, -800, 4)
+			new Hanabi(x << 8, y << 8, color, 0, -800, 4)
 		);
 	}
 });
