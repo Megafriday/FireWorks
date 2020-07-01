@@ -56,27 +56,18 @@ function randInt(min, max) {
 }
 
 //キーボードが押された時に呼ばれる
-document.onkeydown = function (e) {
+document.body.addEventListener("keydown", e => {
 
-	if (e.keyCode == 49 ||
-		e.keyCode == 50 ||
-		e.keyCode == 51 ||
-		e.keyCode == 32
-	) {
-		let s;
-		if (e.keyCode == 49) s = 0;
-		if (e.keyCode == 50) s = 250;
-		if (e.keyCode == 51) s = 520;
+	if (e.key == " ") {
 
-		let x = randInt(s, s + 250);
-		if (e.keyCode == 32) x = randInt(0, SCREEN_SIZE_W);
-		let y = randInt(SCREEN_SIZE_H - 50, SCREEN_SIZE_H);
-		let sp = 600 + randInt(0, 400);
+		const x = randInt(0, SCREEN_SIZE_W);
+		let y = SCREEN_SIZE_H;
 		let co = randInt(0, 3);
 		hanabis.push(
 			new Hanabi(x << 8, y << 8, co, 0, -800, 4)
 		);
 	}
-}
+});
+
 
 mainLoop();
