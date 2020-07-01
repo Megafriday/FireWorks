@@ -4,7 +4,7 @@ const SCREEN_SIZE_H = window.innerHeight - 40;
 let can = document.getElementById("can");
 can.width = SCREEN_SIZE_W;
 can.height = SCREEN_SIZE_H;
-let con = can.getContext("2d");
+let ctx = can.getContext("2d");
 
 let hanabis = [];
 let zanzos = [];
@@ -32,15 +32,15 @@ function update() {
 //毎フレーム毎の描画
 function draw() {
 	//画面を黒でクリア
-	con.globalCompositeOperation = 'source-over';
-	con.fillStyle = "#000000";
-	con.fillRect(0, 0, SCREEN_SIZE_W, SCREEN_SIZE_H);
+	ctx.globalCompositeOperation = 'source-over';
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0, 0, SCREEN_SIZE_W, SCREEN_SIZE_H);
 
-	con.fillStyle = "#ffffff";
-	con.fillText("H:" + hanabis.length, 10, 10);
-	con.fillText("Z:" + zanzos.length, 10, 30);
+	ctx.fillStyle = "#ffffff";
+	ctx.fillText("H:" + hanabis.length, 10, 10);
+	ctx.fillText("Z:" + zanzos.length, 10, 30);
 
-	con.globalCompositeOperation = 'lighter';
+	ctx.globalCompositeOperation = 'lighter';
 	drawObj(zanzos);
 	drawObj(hanabis);
 }

@@ -22,9 +22,9 @@ class Zanzo {
 	draw() {
 		if (this.kill) return;
 
-		con.globalAlpha = 1.0 * this.c / 10;
-		con.fillStyle = fwColor[this.col];
-		con.fillRect((this.x >> 8), (this.y >> 8), 2, 2);
+		ctx.globalAlpha = 1.0 * this.c / 10;
+		ctx.fillStyle = fwColor[this.col];
+		ctx.fillRect((this.x >> 8), (this.y >> 8), 2, 2);
 	}
 }
 
@@ -38,9 +38,9 @@ class Hanabi {
 		this.vy = vy;
 		this.kill = false;
 		this.gv = gv;
-		this.tp = tp;
+		this.tp = tp;	// 0:分裂前 1:分裂後
 		this.hp = hp;
-		this.sp = 100;
+		this.sp = 100;	// 空気抵抗
 	}
 
 	update() {
@@ -90,15 +90,15 @@ class Hanabi {
 		if (this.tp == 0 && randInt(0, 100) < 20) return;
 		if (this.kill) return;
 
-		con.globalAlpha = 1.0;
-		if (this.hp < 50) con.globalAlpha = this.hp / 50;
+		ctx.globalAlpha = 1.0;
+		if (this.hp < 50) ctx.globalAlpha = this.hp / 50;
 		let col = this.col;
 		if (this.tp == 0) col = 0;
-		con.fillStyle = fwColor[col];
-		con.fillRect(this.x >> 8, this.y >> 8, 2, 2);
-		con.globalAlpha = 0.5;
-		con.fillRect((this.x >> 8) - 1, (this.y >> 8), 4, 2);
-		con.fillRect((this.x >> 8), (this.y >> 8) - 1, 2, 4);
+		ctx.fillStyle = fwColor[col];
+		ctx.fillRect(this.x >> 8, this.y >> 8, 2, 2);
+		ctx.globalAlpha = 0.5;
+		ctx.fillRect((this.x >> 8) - 1, (this.y >> 8), 4, 2);
+		ctx.fillRect((this.x >> 8), (this.y >> 8) - 1, 2, 4);
 		zanzos.push(
 			new Zanzo(this.x, this.y, col)
 		);
